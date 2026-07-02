@@ -21,8 +21,8 @@ export default defineConfig({
         background_color: '#faf8f5',
         display: 'standalone',
         orientation: 'portrait',
-        scope: '/',
-        start_url: '/',
+        scope: '/le-poussin-observateur/',
+        start_url: '/le-poussin-observateur/',
         icons: [
           {
             src: 'pwa-192x192.png',
