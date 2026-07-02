@@ -29,13 +29,17 @@ export const ObservationForm: React.FC<ObservationFormProps> = ({
   const speciesList = useLiveQuery(() => db.species.toArray()) || [];
   const outingsList = useLiveQuery(() => db.outings.toArray()) || [];
 
+  // Helper to format ISO string to local datetime-local string (YYYY-MM-DDTHH:MM)
+  const toLocalDatetimeLocal = (isoString?: string): string => {
+    const date = isoString ? new Date(isoString) : new Date();
+    if (isNaN(date.getTime())) return '';
+    const tzOffset = date.getTimezoneOffset() * 60000;
+    return new Date(date.getTime() - tzOffset).toISOString().slice(0, 16);
+  };
+
   // Form State
   const [speciesName, setSpeciesName] = useState(initialData?.speciesName || '');
-  const [observedAt, setObservedAt] = useState(
-    initialData?.observedAt 
-      ? initialData.observedAt.substring(0, 16) // Convert ISO to datetime-local format YYYY-MM-DDTHH:MM
-      : new Date().toISOString().substring(0, 16)
-  );
+  const [observedAt, setObservedAt] = useState(toLocalDatetimeLocal(initialData?.observedAt));
   const [locationName, setLocationName] = useState(initialData?.locationName || '');
   const [count, setCount] = useState<number | ''>(initialData?.count || 1);
   const [behavior, setBehavior] = useState(initialData?.behavior || '');

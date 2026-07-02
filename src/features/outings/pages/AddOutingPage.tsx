@@ -13,9 +13,13 @@ export const AddOutingPage: React.FC = () => {
 
   // Form State
   const [name, setName] = useState('');
-  const [startedAt, setStartedAt] = useState(
-    new Date().toISOString().substring(0, 16)
-  );
+  
+  const getLocalDatetimeString = () => {
+    const d = new Date();
+    return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+  };
+
+  const [startedAt, setStartedAt] = useState(getLocalDatetimeString());
   const [locationName, setLocationName] = useState('');
   const [notes, setNotes] = useState('');
 
