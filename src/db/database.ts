@@ -14,9 +14,16 @@ export class PoussinObservateurDB extends Dexie {
     super(DB_NAME);
     this.version(DB_VERSION).stores(SCHEMA);
     
-    // Seed initial bird species on creation
-    this.on('populate', () => {
-      this.species.bulkAdd(INITIAL_BIRD_SPECIES);
+    // Seed initial bird species if table is empty (handles pre-existing DBs)
+    this.on('ready', async () => {
+      try {
+        const count = await this.species.count();
+        if (count === 0) {
+          await this.species.bulkAdd(INITIAL_BIRD_SPECIES);
+        }
+      } catch (err) {
+        console.error("Erreur d'initialisation des espèces:", err);
+      }
     });
   }
 }

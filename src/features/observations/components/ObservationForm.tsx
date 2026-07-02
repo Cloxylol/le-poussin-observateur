@@ -85,8 +85,8 @@ export const ObservationForm: React.FC<ObservationFormProps> = ({
     const val = e.target.value;
     setSpeciesName(val);
     if (!val.trim()) {
-      setSuggestions([]);
-      setShowSuggestions(false);
+      setSuggestions(speciesList);
+      setShowSuggestions(true);
       return;
     }
 
@@ -197,11 +197,15 @@ export const ObservationForm: React.FC<ObservationFormProps> = ({
           value={speciesName}
           onChange={handleSpeciesNameChange}
           onFocus={() => {
-            if (speciesList.length > 0 && speciesName.trim()) {
-              const filtered = speciesList.filter(s => 
-                s.commonName.toLowerCase().includes(speciesName.toLowerCase())
-              );
-              setSuggestions(filtered);
+            if (speciesList.length > 0) {
+              if (speciesName.trim() === '') {
+                setSuggestions(speciesList);
+              } else {
+                const filtered = speciesList.filter(s => 
+                  s.commonName.toLowerCase().includes(speciesName.toLowerCase())
+                );
+                setSuggestions(filtered);
+              }
               setShowSuggestions(true);
             }
           }}
