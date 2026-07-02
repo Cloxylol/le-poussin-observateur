@@ -37,7 +37,7 @@ export const ObservationForm: React.FC<ObservationFormProps> = ({
       : new Date().toISOString().substring(0, 16)
   );
   const [locationName, setLocationName] = useState(initialData?.locationName || '');
-  const [count, setCount] = useState<number>(initialData?.count || 1);
+  const [count, setCount] = useState<number | ''>(initialData?.count || 1);
   const [behavior, setBehavior] = useState(initialData?.behavior || '');
   const [habitat, setHabitat] = useState(initialData?.habitat || '');
   const [notes, setNotes] = useState(initialData?.notes || '');
@@ -167,7 +167,7 @@ export const ObservationForm: React.FC<ObservationFormProps> = ({
       locationName: locationName.trim() || undefined,
       latitude,
       longitude,
-      count: count > 0 ? count : 1,
+      count: typeof count === 'number' && count > 0 ? count : 1,
       behavior: behavior || undefined,
       habitat: habitat || undefined,
       notes: notes.trim() || undefined,
@@ -291,7 +291,16 @@ export const ObservationForm: React.FC<ObservationFormProps> = ({
         type="number"
         min="1"
         value={count}
-        onChange={(e) => setCount(Math.max(1, parseInt(e.target.value) || 1))}
+        onChange={(e) => {
+          const val = e.target.value;
+          if (val === '') {
+            setCount('');
+          } else {
+            const parsed = parseInt(val, 10);
+            setCount(isNaN(parsed) ? '' : Math.max(1, parsed));
+          }
+        }}
+        onFocus={(e) => e.target.select()}
       />
 
       {/* Comportement & Habitat */}
