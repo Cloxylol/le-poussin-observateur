@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Lora", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Palette nature et douce */
+  /* Vert Sauge */
+  --color-sage-50: #f4f7f5;
+  --color-sage-100: #e5ede7;
+  --color-sage-200: #cbdbcf;
+  --color-sage-300: #a7c0ad;
+  --color-sage-400: #7fa187;
+  --color-sage-500: #608569;
+  --color-sage-600: #4b6a53;
+  --color-sage-700: #3e5544;
+  --color-sage-800: #334538;
+  --color-sage-900: #2b3a30;
+  --color-sage-950: #17211a;
+
+  /* Beige Papier / Sable */
+  --color-sand-50: #faf8f5;
+  --color-sand-100: #f4ece1;
+  --color-sand-200: #e8dcc8;
+  --color-sand-300: #d6c3a3;
+  --color-sand-400: #c2a67e;
+  --color-sand-500: #b08d5f;
+  --color-sand-600: #a27a51;
+  --color-sand-700: #876140;
+  --color-sand-800: #6e4e37;
+  --color-sand-900: #5b412f;
+  --color-sand-950: #322218;
+
+  /* Bleu Rivière / Eau */
+  --color-river-50: #f1f8fc;
+  --color-river-100: #e1eff8;
+  --color-river-200: #bcdbf0;
+  --color-river-300: #82bee5;
+  --color-river-400: #429ed6;
+  --color-river-500: #1d82be;
+  --color-river-600: #12679c;
+  --color-river-700: #10537e;
+  --color-river-800: #104769;
+  --color-river-900: #123c58;
+  --color-river-950: #0c263b;
+
+  /* Terracotta */
+  --color-terracotta-50: #fdf5f2;
+  --color-terracotta-100: #fbebe5;
+  --color-terracotta-200: #f7d4cb;
+  --color-terracotta-300: #f1b3a3;
+  --color-terracotta-400: #e7876f;
+  --color-terracotta-500: #dc6547;
+  --color-terracotta-600: #c94d30;
+  --color-terracotta-700: #a73c24;
+  --color-terracotta-800: #8a3320;
+  --color-terracotta-900: #732f20;
+  --color-terracotta-950: #3f150d;
+}
+
+/* Styles globaux complémentaires pour l'aspect papier/nature */
+body {
+  background-color: var(--color-sand-50);
+  color: var(--color-sage-950);
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}
+
+/* Custom scrollbars douces */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-sand-100);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-sage-300);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-sage-400);
+}
